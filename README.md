@@ -1,158 +1,114 @@
 # EVA01 COSMIC desktop
 
-A private snapshot of my Fedora COSMIC desktop, using violet, lavender and lime.
-The terminal shows **static, colored ASCII** of the supplied EVA Unit-01 head
-beside Fastfetch. Fish and Starship use the normal full-height terminal, with
-no animation, background renderer or dedicated tmux pane. Running `clear` or
-pressing Ctrl+L clears the terminal and redraws the Fastfetch card above the
-prompt. Ctrl+L preserves a partly typed command. The wrapper leaves scripts
-and `clear` option/help invocations alone. `EVA01_STARTUP=0` disables the card.
+An EVA-01 themed COSMIC setup with violet backgrounds, lavender text and lime
+accents. Includes the desktop layout, terminal, application themes, cursors,
+icons, wallpapers and an installer with automatic file backups.
 
-## Restore
+![EVA-01 wallpaper](wallpapers/eva01.jpg)
 
-Clone this private repository using an authenticated GitHub account:
+## Install
+
+For an existing COSMIC desktop with **Python 3.12+**. Fedora is the supported
+package-installation target. The script does not install COSMIC or an OS.
 
 ```sh
-gh repo clone Mfvesaw/eva01-cosmic-dotfiles
+git clone https://github.com/Mfvesaw/eva01-cosmic-dotfiles.git
 cd eva01-cosmic-dotfiles
 ./install.sh --dry-run
 ./install.sh
 ```
 
-Close themed apps before restoring their preferences. Open a new terminal after
-installation; log out and back in to reload COSMIC's cached cursor and the Qt
-environment. The installer backs up every replaced file or theme directory under
-`~/.local/state/eva01/backups/<timestamp>/`, then restores the saved preferences.
-Unrelated app preferences are merged for VS Code, Vesktop, and Flatpak overrides.
-Existing Zen profiles are discovered automatically, and their EVA01 CSS blocks
-are replaced while preserving other customization blocks. Websites keep their
-own styles; only the browser interface and internal new-tab page are themed.
-Launch Zen once and close it before installing its theme on a fresh account.
+Read the **[installation guide](docs/INSTALL.md)** for prerequisites, package
+installation, app setup, backups, rollback and troubleshooting. Close themed
+apps before restoring their preferences. Log out and back in after installation
+to refresh the cursor and Qt environment, then open a new Fish terminal.
 
-Optional package and application installation:
+| Option | Behavior |
+| --- | --- |
+| `--dry-run` | Verify files and show planned changes without modifying the system. |
+| `--dependencies` | Install the Fedora terminal, font, Qt and KiCad packages with sudo. |
+| `--apps` | Install every Flatpak app in the saved inventory, including applets. |
+| `--wallpaper purple-nebula` | Select the nebula wallpaper instead of EVA-01. |
+| `--home /tmp/eva01-test-home` | Restore files into an isolated folder, skipping desktop integration. |
+
+## What's included
+
+| Component | Theme/configuration |
+| --- | --- |
+| COSMIC | Desktop palette, panel/dock layout and thin lime borders, workspaces, shortcuts, window rules and applets. |
+| Terminal | Static colored EVA head in Fastfetch, rounded Starship prompt, Fish completions and a steady I-beam. `clear` and Ctrl+L redraw the card; Ctrl+L preserves typed input. |
+| GTK / Qt | GTK 3/4, Qt 5/6 and KDE colors; matching Flatpak appearance settings. |
+| Icons / cursor | Purple Colloid variants and EVA01 cursor theme. |
+| Browser / editors | Zen browser chrome, VS Code, IntelliJ and Obsidian themes. Websites keep their own styling. |
+| CAD / chat / games | KiCad, FreeCAD, Vesktop and Steam themes. Steam uses the bundled, verified Millennium loader. |
+| Older applets | A legacy COSMIC theme copy kept in sync for clients such as Pomodoro. |
+
+The palette centers on `#211928`, `#25154A`, `#995CD0`, `#8EDF5F` and `#ECDCFF`.
+This restores a saved desktop layout; monitor names and scaling may need adjusting
+on different hardware. App-specific details are in [apps/](apps/).
+
+## Wallpapers
+
+Both supplied originals are included without resizing or recompression:
+
+- [EVA-01 — 2560 × 1440](wallpapers/eva01.jpg)
+- [Purple nebula — 3000 × 2000](wallpapers/purple-nebula.jpg)
+
+![Purple nebula wallpaper](wallpapers/purple-nebula.jpg)
 
 ```sh
-# Fedora: Fish, Fastfetch, Starship, Qt5ct, Qt6ct, Nimbus Mono PS, KiCad.
-./install.sh --dependencies
-# Restore every Flatpak app listed in metadata/flatpak-apps.tsv, including applets.
-./install.sh --apps
-# Both, plus the configuration restore:
-./install.sh --dependencies --apps
+./install.sh --wallpaper purple-nebula
 ```
 
-The optional Flatpak restore uses the bundled public repository signing keys
-for Flathub and COSMIC. It installs the captured app/branch inventory; archived
-versions can become unavailable later. VS Code and IntelliJ themselves are not
-bundled: install them separately. The installer loads the local VSIX if `code`
-is available, and installs the IntelliJ theme into detected IDE configuration
-versions. Fedora/COSMIC is the supported target; monitor/output preferences
-reflect the source machine and may need adjustment on different hardware.
+Both are installed to `~/.local/share/backgrounds/EVA01/`. Select either one in
+COSMIC Settings → Desktop → Wallpaper. [Wallpaper details and attribution](wallpapers/README.md).
 
-To test safely in another directory (desktop integration is skipped):
+## Terminal artwork
 
 ```sh
-./install.sh --home /tmp/eva01-test-home
+eva01-art                 # static colored ASCII
+eva01-art --width 64      # larger version
+eva01-art --plain         # plain ASCII
+fastfetch                 # artwork with system information
 ```
 
-## Included
+[ASCII preview](assets/eva-head-ascii-preview.png). Rebuilding the artwork with
+`scripts/build-ascii.py` requires Pillow; displaying it only needs Python.
 
-- COSMIC settings: panel/dock layout, applets, borders, workspaces, shortcuts,
-  window rules, desktop/terminal/editor theme settings and wallpaper.
-- Fish config, bindings and completions; Starship; Fastfetch and static ASCII.
-- GTK 3/4, Qt 5/6, KDE color scheme, EVA cursor and purple Colloid icon variants.
-- Zen browser chrome, VS Code theme/preferences, IntelliJ appearance/fonts,
-  KiCad settings/colors, FreeCAD preferences/theme, Vesktop theme/preferences.
-- Obsidian EVA01 theme/appearance, and Steam EVA01 CSS with a verified,
-  user-local Millennium 3.6.2 loader and Steam launcher integration.
-- Environment, autostart, MIME associations, Flatpak appearance overrides.
-- Source image, wallpaper, theme files and package/Flatpak/extension inventories.
+## Backups and maintenance
 
-The panel and dock use a 1 px lime border matching the window highlight.
-COSMIC may regenerate its divider color when rebuilding a theme. To reapply
-the border after a theme change:
+The installer preserves replaced files under `~/.local/state/eva01/backups/`.
+[Rollback instructions](docs/INSTALL.md#backups-and-rollback) explain what the
+file restore covers. Steam loader files have a separate local backup directory.
+
+To update your own configuration snapshot:
+
+```sh
+./backup.sh
+git diff --stat
+# Review the changes before committing or pushing.
+```
+
+This repository is public. The snapshot uses an allowlist and excludes account
+databases, browser sessions/history, notes, game saves, caches and shell history.
+Review new app settings before publishing them. Run
+`EVA01_REFRESH_ASSETS=1 ./backup.sh` after changing theme/icon/cursor assets.
+The included checker scans common credential formats and verifies archive paths.
+
+If COSMIC regenerates the panel border colors:
 
 ```sh
 python3 scripts/match-panel-borders.py
 ```
 
-Home paths are substituted at installation. Session-specific document-portal
-paths for the logo-menu image are replaced with a permanent app-private asset.
-Source icons/theme assets are compressed with symlinks preserved. Credentials,
-browser accounts/history/bookmarks, shell history, project workspaces, caches,
-SSH/GPG private keys and unrelated application account data are excluded.
-This is a desktop configuration backup, not a full home-directory backup.
+[Validation notes](metadata/VALIDATION.md) describe the isolated restore,
+rollback, native theme-parser and app-style checks that were run. Clean-OS
+package installation has not been tested.
 
-## Artwork
+## Credits
 
-```sh
-eva01-art                 # static colored artwork
-eva01-art --width 64      # larger version
-eva01-art --plain         # ordinary uncolored ASCII
-fastfetch                 # artwork beside system information
-```
-
-`assets/eva-head-source.png` is the supplied reference, preserved unchanged.
-`scripts/build-ascii.py` rebuilds the ASCII assets; rebuilding needs Pillow,
-while playback needs only Python's standard library. The image's violet armor,
-lime accents, blue jaw and amber neck are retained using Fastfetch color codes.
-Theme/icon assets retain their upstream license files in the asset archive;
-the supplied Evangelion artwork is not an original asset of this repository.
-
-## Update the backup
-
-```sh
-./backup.sh
-git diff --stat
-git add .
-git commit -m "Update EVA01 desktop settings"
-git push
-```
-
-Run `EVA01_REFRESH_ASSETS=1 ./backup.sh` after changing icons, cursor, or GTK
-theme assets. The snapshot script uses an explicit allowlist and removes common
-credential/history fields from structured preferences. The checker rejects
-common credential formats, account databases, unsafe archive entries and files
-too large for ordinary GitHub Git. Review new configurations before committing.
-
-To roll back a configuration restore:
-
-```sh
-python3 scripts/restore.py ~/.local/state/eva01/backups/<timestamp>
-```
-
-Rollback restores files from that installer run. Package installs, extension
-installs, GSettings and session environment changes are not reversed by the
-file rollback. No repository script closes apps or restarts the desktop.
-
-## Steam and Obsidian
-
-Steam uses the bundled, checksum-verified Millennium 3.6.2 release in the user's
-home directory, selected through its upstream runtime-path override. The
-installer sets up the wrapper and desktop entry when native /usr/bin/steam is
-installed. Fully exit Steam (including its tray icon) and reopen it to load
-the theme. No game is stopped by these scripts. Steam client updates may remove
-its hook files; rerun `python3 apps/steam/install-millennium.py` if necessary.
-Steam hooks/launcher files have their own backups under
-`~/.local/state/eva01/steam-backups/`, separate from the main installer's backup.
-
-Obsidian vaults are discovered from the destination machine's registry. Only
-theme files and appearance preferences are applied. Vault notes, attachments,
-workspaces, Steam account files and game saves are never copied into this repo.
-Open a vault once before restoring its Obsidian theme. External vaults can be
-themed manually by copying apps/obsidian/EVA01 to their .obsidian/themes folder.
-
-Theme sources and upstream references are in apps/steam/README.md and
-apps/obsidian/README.md. The Steam loader is bundled with its upstream license.
-
-## Older COSMIC applets
-
-Cosmic Pomodoro 0.1.0 uses libcosmic's version-1 theme schema, while this desktop
-writes version 2. The installer includes a compatible version-1 copy of the dark
-theme, converting hexadecimal colors to the RGBA tuples expected by older clients.
-A systemd user path unit keeps it synchronized when the version-2 theme changes.
-This does not restart applets or change their timers. The synchronizer is
-`~/.local/bin/eva01-sync-legacy-theme`; its previous files are saved under
-`~/.local/state/eva01/legacy-theme-backups/`.
-
-Source reference for the installed applet's theme schema:
-https://github.com/pop-os/libcosmic/blob/03d0171bbe36664b4749c2b70297a288f35df59f/cosmic-theme/src/model/theme.rs
+Theme/icon assets retain their upstream license files in the asset archive.
+Millennium is bundled with its [upstream license](apps/steam/MILLENNIUM-LICENSE)
+and [installation details](apps/steam/README.md). Supplied Evangelion artwork
+and wallpapers remain the work of their respective artists/rightsholders;
+this repository does not claim authorship or relicense those images.

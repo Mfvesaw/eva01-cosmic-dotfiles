@@ -19,6 +19,8 @@ parser.add_argument('--dry-run', action='store_true', help='verify and list chan
 parser.add_argument('--home', type=Path, default=Path.home(), help='restore into another home; skip desktop integration')
 parser.add_argument('--dependencies', action='store_true', help='install Fedora terminal/Qt/font/KiCad packages using sudo dnf')
 parser.add_argument('--apps', action='store_true', help='reinstall the saved Flatpak application inventory')
+parser.add_argument('--wallpaper', choices=('eva01', 'purple-nebula'), default='eva01',
+                    help='choose a bundled wallpaper (default: eva01)')
 args = parser.parse_args()
 home = args.home.expanduser().absolute()
 if home == Path('/') or home == ROOT or ROOT.is_relative_to(home) and home != Path.home():
@@ -168,6 +170,21 @@ for source in sorted((ROOT/'home').rglob('*')):
     if str(rel).startswith('.local/share/flatpak/overrides/'):
         merge_ini(source,target)
     else:put(target,content(source),source.stat().st_mode&0o777)
+
+# Both wallpapers are installed; select one in COSMIC's desktop configuration.
+backgrounds=home/'.local/share/backgrounds/EVA01'
+for source in sorted((ROOT/'wallpapers').glob('*.jpg')):
+    put(backgrounds/source.name,source.read_bytes())
+selected=backgrounds/(args.wallpaper+'.jpg')
+background_template=ROOT/'home/.config/cosmic/com.system76.CosmicBackground/v1/all'
+if background_template.exists():
+    settings=content(background_template).decode()
+    settings,count=re.subn(r'source:\s*Path\("(?:[^"\\]|\\.)*"\)',
+                          lambda _: 'source: Path('+json.dumps(str(selected))+')',settings,count=1)
+    if count!=1:raise SystemExit('Cannot select the wallpaper in this COSMIC background configuration.')
+    put(home/'.config/cosmic/com.system76.CosmicBackground/v1/all',settings.encode())
+    put(home/'.config/cosmic/com.system76.CosmicSettings.Wallpaper/v1/custom-images',
+        (json.dumps([str(backgrounds/'eva01.jpg'),str(backgrounds/'purple-nebula.jpg')],indent=2)+'\n').encode())
 
 data=home/'.local/share'
 tops=['icons/Colloid-EVA01','icons/Colloid-EVA01-Dark','icons/Colloid-EVA01-Light',

@@ -38,3 +38,11 @@ by a native Rust checker with the 29-field legacy theme layout and matching
 component/container/palette field definitions. Background and accent values
 matched EVA01. The systemd user path unit is enabled for automatic synchronization.
 The running applet PID was retained; timer preferences and process were not reset.
+
+Public release checks: all reachable Git history was scanned for common credential
+patterns before changing repository visibility. Both supplied wallpaper JPEGs
+were copied byte-for-byte and contain no EXIF metadata. The public installer's
+isolated dry run made no changes; an isolated install selected the nebula,
+installed both original images, exposed both COSMIC wallpaper choices, and
+rolled back the prior wallpaper configuration successfully. Documentation links
+were checked against the repository files.
