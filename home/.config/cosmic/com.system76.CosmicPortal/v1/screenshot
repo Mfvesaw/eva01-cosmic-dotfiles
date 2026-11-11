@@ -1,6 +1,6 @@
 (
     save_location: Pictures,
-    choice: Rectangle,
+    choice: Output(Some("HDMI-A-1")),
     last_rectangle: Some((
         left: 1135,
         top: 31,

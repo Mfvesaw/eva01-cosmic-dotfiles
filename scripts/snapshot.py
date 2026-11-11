@@ -11,6 +11,7 @@ import re
 import shutil
 import subprocess
 import tarfile
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 HOME = Path.home()
@@ -48,6 +49,14 @@ def copy_file(source, target):
     if source.suffix == '.json':
         try: text = json.dumps(scrub(json.loads(text), str(source.relative_to(HOME))), indent=2)+'\n'
         except json.JSONDecodeError: pass
+    if source.name=='user.cfg' and 'FreeCAD' in source.parts:
+        tree=ET.fromstring(text)
+        for parent in tree.iter():
+            for child in list(parent):
+                name=child.get('Name','')
+                if PRIVATE.search(name) or re.search(r'MRU|RecentFiles|RecentProjects',name,re.I):
+                    parent.remove(child);excluded.append('FreeCAD/'+name)
+        text='<?xml version="1.0" encoding="UTF-8"?>\n'+ET.tostring(tree,encoding='unicode')+'\n'
     write(target, text, source.stat().st_mode & 0o777)
 
 def include(relative):
@@ -97,6 +106,36 @@ for item in ('settings.json', 'settings/settings.json'):
         data = scrub(json.loads(p.read_text()), 'vesktop/'+item)
         data.pop('cloud', None)
         write(apps/'vesktop'/item, json.dumps(data, indent=2)+'\n')
+
+# Obsidian themes/preferences only: never copy notes, attachments or workspaces.
+obsidian=HOME/'.var/app/md.obsidian.Obsidian/config/obsidian/obsidian.json'
+if obsidian.exists():
+    for vault in json.loads(obsidian.read_text()).get('vaults',{}).values():
+        cfg=Path(vault['path'])/'.obsidian'
+        theme=cfg/'themes/EVA01'
+        if theme.exists():
+            for p in theme.rglob('*'):
+                if p.is_file():copy_file(p,apps/'obsidian/EVA01'/p.relative_to(theme))
+            copy_file(cfg/'appearance.json',apps/'obsidian/appearance.json')
+            break
+copy_file(HOME/'Downloads/EVA01/apps/obsidian/README.md',apps/'obsidian/README.md')
+
+# Steam account/config/userdata folders are deliberately not part of the backup.
+steam=HOME/'.steam/steam'
+if not steam.exists():steam=HOME/'.local/share/Steam'
+theme=steam/'millennium/themes/EVA01'
+if theme.exists():
+    for p in theme.rglob('*'):
+        if p.is_file():copy_file(p,apps/'steam/EVA01'/p.relative_to(theme))
+for name in ('README.md','install-millennium.py','MILLENNIUM-LICENSE',
+             'millennium-v3.6.2-linux-x86_64.tar.gz'):
+    copy_file(HOME/'Downloads/EVA01/apps/steam'/name,apps/'steam'/name)
+cfg=HOME/'.config/millennium/config.json'
+if cfg.exists():
+    data=json.loads(cfg.read_text())
+    appearance={key:data[key] for key in ('themes',) if key in data}
+    appearance['general']={'injectCSS':data.get('general',{}).get('injectCSS',True)}
+    write(apps/'steam/config.json',json.dumps(scrub(appearance),indent=2)+'\n')
 for version in (HOME/'.config/JetBrains').glob('IntelliJIdea*'):
     for name in ('laf.xml', 'colors.scheme.xml', 'editor-font.xml', 'console-font.xml',
                  'terminal-font.xml', 'editor.xml', 'keymap.xml', 'ui.lnf.xml'):

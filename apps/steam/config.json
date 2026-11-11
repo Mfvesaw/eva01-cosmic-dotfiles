@@ -1,0 +1,10 @@
+{
+  "themes": {
+    "activeTheme": "EVA01",
+    "allowedStyles": true,
+    "allowedScripts": false
+  },
+  "general": {
+    "injectCSS": true
+  }
+}

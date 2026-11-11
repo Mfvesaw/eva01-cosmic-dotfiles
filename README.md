@@ -62,6 +62,8 @@ To test safely in another directory (desktop integration is skipped):
 - GTK 3/4, Qt 5/6, KDE color scheme, EVA cursor and purple Colloid icon variants.
 - Zen browser chrome, VS Code theme/preferences, IntelliJ appearance/fonts,
   KiCad settings/colors, FreeCAD preferences/theme, Vesktop theme/preferences.
+- Obsidian EVA01 theme/appearance, and Steam EVA01 CSS with a verified,
+  user-local Millennium 3.6.2 loader and Steam launcher integration.
 - Environment, autostart, MIME associations, Flatpak appearance overrides.
 - Source image, wallpaper, theme files and package/Flatpak/extension inventories.
 
@@ -121,3 +123,23 @@ python3 scripts/restore.py ~/.local/state/eva01/backups/<timestamp>
 Rollback restores files from that installer run. Package installs, extension
 installs, GSettings and session environment changes are not reversed by the
 file rollback. No repository script closes apps or restarts the desktop.
+
+## Steam and Obsidian
+
+Steam uses the bundled, checksum-verified Millennium 3.6.2 release in the user's
+home directory, selected through its upstream runtime-path override. The
+installer sets up the wrapper and desktop entry when native /usr/bin/steam is
+installed. Fully exit Steam (including its tray icon) and reopen it to load
+the theme. No game is stopped by these scripts. Steam client updates may remove
+its hook files; rerun `python3 apps/steam/install-millennium.py` if necessary.
+Steam hooks/launcher files have their own backups under
+`~/.local/state/eva01/steam-backups/`, separate from the main installer's backup.
+
+Obsidian vaults are discovered from the destination machine's registry. Only
+theme files and appearance preferences are applied. Vault notes, attachments,
+workspaces, Steam account files and game saves are never copied into this repo.
+Open a vault once before restoring its Obsidian theme. External vaults can be
+themed manually by copying apps/obsidian/EVA01 to their .obsidian/themes folder.
+
+Theme sources and upstream references are in apps/steam/README.md and
+apps/obsidian/README.md. The Steam loader is bundled with its upstream license.

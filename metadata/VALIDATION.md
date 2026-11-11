@@ -18,3 +18,16 @@
 The optional Fedora package and Flatpak reinstall modes were not run: the apps
 are already installed on this machine. Different hardware/output settings and
 future app versions may need adjustment.
+
+Steam/Obsidian checks: Chromium computed-style fixtures verified purple/lavender
+colors, 8 px Steam controls and unchanged image filters. Obsidian appearance
+selects EVA01 dark mode. Millennium release SHA-256 was verified against GitHub
+release metadata; 32/64-bit native loader dependencies resolve. The running
+Steam client was not restarted, so a live Steam visual inspection is pending
+the user's normal restart. No claim of a live app screenshot is made.
+
+An isolated full restore discovered a synthetic Obsidian vault, retained its
+existing font preference and note, and installed the theme. A synthetic Steam
+account file remained unchanged. The portable loader's dry run wrote no runtime
+files; its actual isolated install produced the verified native libraries, hook
+copies, executable wrapper, Fish function and desktop actions without sudo.
