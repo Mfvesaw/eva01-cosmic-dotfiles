@@ -245,17 +245,6 @@ if (ROOT/'apps/obsidian/EVA01').exists():
             if source.is_file():put(cfg/'themes/EVA01'/source.relative_to(ROOT/'apps/obsidian/EVA01'),content(source))
         merge_json(ROOT/'apps/obsidian/appearance.json',cfg/'appearance.json')
 
-if (ROOT/'apps/steam/EVA01').exists():
-    steam=home/'.steam/steam'
-    if not steam.exists():steam=home/'.local/share/Steam'
-    if not steam.resolve().is_relative_to(home.resolve()):raise SystemExit('Steam root is outside this home.')
-    for source in (ROOT/'apps/steam/EVA01').rglob('*'):
-        if source.is_file():put(steam/'millennium/themes/EVA01'/source.relative_to(ROOT/'apps/steam/EVA01'),content(source))
-    merge_json(ROOT/'apps/steam/config.json',home/'.config/millennium/config.json')
-    if desktop and Path('/usr/bin/steam').exists():
-        run([sys.executable,ROOT/'apps/steam/install-millennium.py'])
-    else:print('Steam: user-local loader installer is available at apps/steam/install-millennium.py.')
-
 # Install the local IntelliJ theme into matching installed IDE versions.
 versions=set((home/'.config/JetBrains').glob('IntelliJIdea*'))
 for version in versions:

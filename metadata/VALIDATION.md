@@ -46,3 +46,13 @@ isolated dry run made no changes; an isolated install selected the nebula,
 installed both original images, exposed both COSMIC wallpaper choices, and
 rolled back the prior wallpaper configuration successfully. Documentation links
 were checked against the repository files.
+
+Current scope: Steam theme files and loader installation support were removed
+from the active repository. Earlier Steam checks above describe historical
+versions only. MYNT replication is documented using the installed 3.3.802
+extension's actual controls and backup/restore implementation; no personal
+new-tab storage or exported browser profile is included.
+
+Post-removal isolated restore passed: an existing Millennium selection and Steam
+file were unchanged, and no Steam loader, hook, wrapper or theme was installed.
+The Zen/MYNT guide's local links and supplied reference screenshot resolve.

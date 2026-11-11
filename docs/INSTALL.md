@@ -7,8 +7,6 @@
 - Git, Bash, Python **3.12 or newer**, and enough free space for the assets and
   a backup of the files already on your machine.
 - Fish, Fastfetch and Starship for the terminal setup; Qt5ct and Qt6ct for Qt apps.
-- Native x86_64 Linux Steam for the included Millennium loader. Flatpak Steam
-  is not supported by this loader.
 
 The configuration was prepared on Fedora 44 / COSMIC 1.11. Monitor names, display
 scaling, panel placement and installed app versions may differ on your machine.
@@ -73,7 +71,7 @@ To reinstall the captured Flatpak app inventory, including COSMIC applets:
 `--apps` installs **every app** listed in
 [metadata/flatpak-apps.tsv](../metadata/flatpak-apps.tsv), not just themed apps.
 Review that list first. Signed Flathub/COSMIC remote definitions are bundled.
-The installer does not install VS Code, IntelliJ or native Steam themselves;
+The installer does not install VS Code or IntelliJ themselves;
 install those applications separately if you want their themes.
 
 ## 4. Reload the desktop and apps
@@ -84,11 +82,6 @@ install those applications separately if you want their themes.
    optionally run `chsh -s /usr/bin/fish`, then log in again.
 3. Open the applications you themed. Adjust monitor settings and panel placement
    in COSMIC Settings if your hardware differs.
-
-Steam must be fully exited, including its tray icon, before opening it again to
-load Millennium. The installer does not stop Steam or any game. Its loader is
-installed under `~/.local/lib/millennium/3.6.2/`; its original release checksum
-is verified, and its upstream license is included.
 
 For Zen and Obsidian on a fresh account, launch the app once first to create a
 profile or vault, then close it and rerun the installer. Existing profiles/vaults
@@ -119,8 +112,7 @@ python3 scripts/restore.py ~/.local/state/eva01/backups/<timestamp>
 ```
 
 The file rollback does not uninstall packages/extensions or undo GSettings and
-session-environment changes. Millennium's hook/launcher backups are separate,
-under `~/.local/state/eva01/steam-backups/`.
+session-environment changes.
 
 Older COSMIC applets use a synchronized legacy theme copy. Its user path unit
 is `eva01-legacy-theme.path`. To stop automatic synchronization:
@@ -137,10 +129,15 @@ systemctl --user disable --now eva01-legacy-theme.path
 | Missing terminal colors/art | Install Fish, Fastfetch and Starship, then open Fish. |
 | Lime panel/dock borders disappeared | Run `python3 scripts/match-panel-borders.py`. |
 | Older applet still has default colors | Run `python3 ~/.local/bin/eva01-sync-legacy-theme`. |
-| Steam lost its theme after an update | Fully exit it and rerun `python3 apps/steam/install-millennium.py`. |
 | Zen or Obsidian theme was skipped | Create a profile/vault, close the app and rerun the installer. |
 | Checksum mismatch | Restore the modified repository file or review your edits and run `python3 scripts/check-backup.py --write-checksums`. |
 
 Package installation modes were not exercised on a clean OS. Configuration
 restores, rollback, native theme parsing and isolated app-theme checks are
 recorded in [metadata/VALIDATION.md](../metadata/VALIDATION.md).
+
+## Zen and MYNT new-tab layout
+
+The browser CSS and extension setup are separate. See the
+[Zen + MYNT replication guide](ZEN-MYNT.md) to reproduce the nebula screenshot.
+Steam themes and Steam loader installation are not included in this installer.

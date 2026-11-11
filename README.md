@@ -40,12 +40,20 @@ to refresh the cursor and Qt environment, then open a new Fish terminal.
 | GTK / Qt | GTK 3/4, Qt 5/6 and KDE colors; matching Flatpak appearance settings. |
 | Icons / cursor | Purple Colloid variants and EVA01 cursor theme. |
 | Browser / editors | Zen browser chrome, VS Code, IntelliJ and Obsidian themes. Websites keep their own styling. |
-| CAD / chat / games | KiCad, FreeCAD, Vesktop and Steam themes. Steam uses the bundled, verified Millennium loader. |
+| CAD / chat | KiCad, FreeCAD and Vesktop themes. |
 | Older applets | A legacy COSMIC theme copy kept in sync for clients such as Pomodoro. |
 
 The palette centers on `#211928`, `#25154A`, `#995CD0`, `#8EDF5F` and `#ECDCFF`.
 This restores a saved desktop layout; monitor names and scaling may need adjusting
 on different hardware. App-specific details are in [apps/](apps/).
+
+## Recreate the Zen / MYNT screenshot
+
+Follow the **[Zen + MYNT replication guide](docs/ZEN-MYNT.md)** for the extension
+link, light widget mode, purple accent, wallpaper upload, clock/weather/search
+settings and right-side COSMIC panel. It includes the supplied reference image.
+MYNT is configured manually; no browser profile or personal extension export
+is imported by the installer. Steam theming is no longer included.
 
 ## Wallpapers
 
@@ -79,7 +87,7 @@ fastfetch                 # artwork with system information
 
 The installer preserves replaced files under `~/.local/state/eva01/backups/`.
 [Rollback instructions](docs/INSTALL.md#backups-and-rollback) explain what the
-file restore covers. Steam loader files have a separate local backup directory.
+file restore covers.
 
 To update your own configuration snapshot:
 
@@ -108,7 +116,5 @@ package installation has not been tested.
 ## Credits
 
 Theme/icon assets retain their upstream license files in the asset archive.
-Millennium is bundled with its [upstream license](apps/steam/MILLENNIUM-LICENSE)
-and [installation details](apps/steam/README.md). Supplied Evangelion artwork
-and wallpapers remain the work of their respective artists/rightsholders;
+Supplied Evangelion artwork and wallpapers remain the work of their respective artists/rightsholders;
 this repository does not claim authorship or relicense those images.

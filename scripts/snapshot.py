@@ -60,9 +60,13 @@ def copy_file(source, target):
     write(target, text, source.stat().st_mode & 0o777)
 
 def include(relative):
+    if relative in ('.config/environment.d/80-eva01-steam.conf', '.config/fish/functions/steam.fish'):
+        return
     source = HOME/relative
     if source.is_dir():
         for p in sorted(source.rglob('*')):
+            if str(p.relative_to(HOME)) in ('.config/environment.d/80-eva01-steam.conf', '.config/fish/functions/steam.fish'):
+                continue
             if p.is_file() and not any(part in ('__pycache__', '.git') for part in p.parts):
                 if p.suffix in ('.bak', '.log') or p.name.endswith('~'): continue
                 copy_file(p, DEST/p.relative_to(HOME))
@@ -122,22 +126,6 @@ if obsidian.exists():
             break
 copy_file(HOME/'Downloads/EVA01/apps/obsidian/README.md',apps/'obsidian/README.md')
 
-# Steam account/config/userdata folders are deliberately not part of the backup.
-steam=HOME/'.steam/steam'
-if not steam.exists():steam=HOME/'.local/share/Steam'
-theme=steam/'millennium/themes/EVA01'
-if theme.exists():
-    for p in theme.rglob('*'):
-        if p.is_file():copy_file(p,apps/'steam/EVA01'/p.relative_to(theme))
-for name in ('README.md','install-millennium.py','MILLENNIUM-LICENSE',
-             'millennium-v3.6.2-linux-x86_64.tar.gz'):
-    copy_file(HOME/'Downloads/EVA01/apps/steam'/name,apps/'steam'/name)
-cfg=HOME/'.config/millennium/config.json'
-if cfg.exists():
-    data=json.loads(cfg.read_text())
-    appearance={key:data[key] for key in ('themes',) if key in data}
-    appearance['general']={'injectCSS':data.get('general',{}).get('injectCSS',True)}
-    write(apps/'steam/config.json',json.dumps(scrub(appearance),indent=2)+'\n')
 for version in (HOME/'.config/JetBrains').glob('IntelliJIdea*'):
     for name in ('laf.xml', 'colors.scheme.xml', 'editor-font.xml', 'console-font.xml',
                  'terminal-font.xml', 'editor.xml', 'keymap.xml', 'ui.lnf.xml'):
