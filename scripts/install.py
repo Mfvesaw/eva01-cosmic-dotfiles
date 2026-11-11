@@ -252,6 +252,9 @@ if not args.dry_run:
     backup.mkdir(parents=True,exist_ok=True)
     (backup/'restore-manifest.json').write_text(json.dumps({'changed':actions,'saved':[str(p.relative_to(home)) for p in saved]},indent=2)+'\n')
 if desktop:
+    if shutil.which('systemctl') and (ROOT/'home/.config/systemd/user/eva01-legacy-theme.path').exists():
+        run(['systemctl','--user','daemon-reload'])
+        run(['systemctl','--user','enable','--now','eva01-legacy-theme.path'])
     for command in [('fc-cache','-f'),('gtk-update-icon-cache','-f',str(data/'icons/Colloid-EVA01-Dark'))]:
         if shutil.which(command[0]):run(command)
     if shutil.which('gsettings'):

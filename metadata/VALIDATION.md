@@ -31,3 +31,10 @@ existing font preference and note, and installed the theme. A synthetic Steam
 account file remained unchanged. The portable loader's dry run wrote no runtime
 files; its actual isolated install produced the verified native libraries, hook
 copies, executable wrapper, Fish function and desktop actions without sudo.
+
+COSMIC Pomodoro compatibility: the installed 0.1.0 release pins libcosmic
+03d0171, whose Theme config version is 1. Converted v2 colors were deserialized
+by a native Rust checker with the 29-field legacy theme layout and matching
+component/container/palette field definitions. Background and accent values
+matched EVA01. The systemd user path unit is enabled for automatic synchronization.
+The running applet PID was retained; timer preferences and process were not reset.

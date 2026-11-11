@@ -143,3 +143,16 @@ themed manually by copying apps/obsidian/EVA01 to their .obsidian/themes folder.
 
 Theme sources and upstream references are in apps/steam/README.md and
 apps/obsidian/README.md. The Steam loader is bundled with its upstream license.
+
+## Older COSMIC applets
+
+Cosmic Pomodoro 0.1.0 uses libcosmic's version-1 theme schema, while this desktop
+writes version 2. The installer includes a compatible version-1 copy of the dark
+theme, converting hexadecimal colors to the RGBA tuples expected by older clients.
+A systemd user path unit keeps it synchronized when the version-2 theme changes.
+This does not restart applets or change their timers. The synchronizer is
+`~/.local/bin/eva01-sync-legacy-theme`; its previous files are saved under
+`~/.local/state/eva01/legacy-theme-backups/`.
+
+Source reference for the installed applet's theme schema:
+https://github.com/pop-os/libcosmic/blob/03d0171bbe36664b4749c2b70297a288f35df59f/cosmic-theme/src/model/theme.rs

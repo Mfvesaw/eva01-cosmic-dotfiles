@@ -1,0 +1,7 @@
+[Unit]
+Description=Sync EVA01 colors for older COSMIC applets
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/sleep 0.3
+ExecStart=/usr/bin/python3 "%h/.local/bin/eva01-sync-legacy-theme"

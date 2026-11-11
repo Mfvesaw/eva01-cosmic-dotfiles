@@ -77,6 +77,8 @@ for relative in [
     '.config/gtk-4.0/settings.ini', '.config/gtk-4.0/gtk.css', '.config/gtk-4.0/cosmic',
     '.config/qt5ct', '.config/qt6ct', '.config/kdeglobals', '.config/kcminputrc',
     '.config/QtProject.conf', '.config/environment.d', '.config/autostart',
+    '.config/systemd/user/eva01-legacy-theme.path',
+    '.config/systemd/user/eva01-legacy-theme.service',
     '.config/mimeapps.list', '.config/cosmic-mimeapps.list', '.config/kicad',
     '.config/arkrc', '.config/gwenviewrc', '.config/okularrc', '.config/okularpartrc',
     '.Xresources', '.local/share/flatpak/overrides',
@@ -144,7 +146,7 @@ for version in (HOME/'.config/JetBrains').glob('IntelliJIdea*'):
         if (version/sub).exists(): include(str((version/sub).relative_to(HOME)))
 
 # Runtime helpers and static assets; the old animation is intentionally excluded.
-for name in ('eva01-art', 'eva01-greeting'):
+for name in ('eva01-art', 'eva01-greeting', 'eva01-sync-legacy-theme'):
     copy_file(HOME/'.local/bin'/name, DEST/'.local/bin'/name)
 for p in (ROOT/'assets/ascii').iterdir():
     if p.is_file(): copy_file(p, DEST/'.local/share/eva01'/p.name)

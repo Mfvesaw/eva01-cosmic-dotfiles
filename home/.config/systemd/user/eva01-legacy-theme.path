@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch COSMIC theme changes for older applets
+
+[Path]
+PathChanged=%h/.config/cosmic/com.system76.CosmicTheme.Dark/v2
+Unit=eva01-legacy-theme.service
+
+[Install]
+WantedBy=default.target
