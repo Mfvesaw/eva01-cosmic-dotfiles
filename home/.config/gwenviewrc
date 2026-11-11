@@ -1,0 +1,17 @@
+[General]
+LastUsedVersion=210800
+SideBarPage=operations
+
+[MainWindow]
+MenuBar=Disabled
+
+[Recent Files]
+File1[$e]=$HOME/Pictures/aero.webp
+File2[$e]=$HOME/Pictures/logo.svg
+Name1[$e]=aero.webp
+Name2[$e]=logo.svg
+
+[SideBar]
+InformationSplitterSizes=0,0
+IsVisible ViewMode=true
+SideBarSplitterSizes=225,891

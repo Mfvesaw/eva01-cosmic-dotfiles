@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+"""Display one static Fastfetch card, then leave the prompt alone."""
+import os
+import shutil
+import subprocess
+import sys
+
+if not sys.stdout.isatty() or os.environ.get('TERM', 'dumb') in ('dumb', 'linux'):
+    raise SystemExit(0)
+if shutil.which('fastfetch'):
+    subprocess.run(['fastfetch'], check=False, timeout=15)
+elif shutil.which('eva01-art'):
+    subprocess.run(['eva01-art'], check=False)

@@ -1,0 +1,17 @@
+[Desktop Entry]
+Icon=jetbrains-toolbox
+Exec=__EVA01_HOME__/Downloads/jetbrains-toolbox-3.8.1.88030/jetbrains-toolbox-3.8.1.88030/bin/jetbrains-toolbox --minimize
+Version=1.0
+Type=Application
+Categories=Development
+Name=JetBrains Toolbox
+StartupWMClass=jetbrains-toolbox
+Terminal=false
+MimeType=
+X-GNOME-Autostart-enabled=true
+X-Icon-Path=__EVA01_HOME__/.local/share/icons/hicolor/scalable/apps/jetbrains-toolbox.svg
+X-Installed-Icon-Cache-Path=__EVA01_HOME__/.local/share/icons/hicolor
+StartupNotify=false
+X-GNOME-Autostart-Delay=10
+X-MATE-Autostart-Delay=10
+X-KDE-autostart-after=panel

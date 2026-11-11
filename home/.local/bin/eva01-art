@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Print static EVA-01 ASCII artwork without moving the terminal cursor."""
+from pathlib import Path
+import argparse
+import json
+import os
+import shutil
+import sys
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--width', type=int, default=36, choices=(28, 36, 48, 64))
+parser.add_argument('--plain', action='store_true')
+args = parser.parse_args()
+path = Path.home()/'.local/share/eva01/eva-head.json'
+data = json.loads(path.read_text())
+available = shutil.get_terminal_size((80, 24)).columns
+width = max(w for w in (28, 36, 48, 64) if w <= max(28, min(args.width, available-1)))
+art = data['variants'][str(width)]
+color = sys.stdout.isatty() and not args.plain and 'NO_COLOR' not in os.environ
+colors = [''] + ['\x1b[38;2;'+ ';'.join(map(str, bytes.fromhex(c[1:])))+'m' for c in data['palette']]
+for line, roles in zip(art['lines'], art['roles']):
+    if not color:
+        print(line)
+        continue
+    output = ''; previous = None
+    for char, role in zip(line, roles):
+        if char != ' ' and role != previous:
+            output += colors[int(role)]; previous = role
+        output += char
+    print(output+'\x1b[0m')

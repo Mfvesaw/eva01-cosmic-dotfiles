@@ -1,0 +1,79 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+palette = 'eva01'
+add_newline = true
+command_timeout = 1000
+right_format = '$time'
+format = """
+[╭─](violet)[ ◈ NERV ](bold fg:text bg:panel)[ ▰](violet)[▰](lime)[▰ ](mint)$username$hostname[ ◆ ](violet)$directory$git_branch$git_status$cmd_duration$line_break[╰─](violet)$nodejs$python$rust$golang$character"""
+
+[palettes.eva01]
+background = '#211928'
+surface = '#25154A'
+panel = '#3E136F'
+violet = '#995CD0'
+lime = '#8EDF5F'
+mint = '#62C77B'
+text = '#ECDCFF'
+muted = '#B59AD9'
+orange = '#E9A23B'
+red = '#F07891'
+blue = '#A8BFFF'
+
+[username]
+show_always = true
+style_user = 'bold fg:text'
+style_root = 'bold fg:red'
+format = '[ $user]($style)'
+
+[hostname]
+ssh_only = true
+style = 'fg:text'
+format = '[@$hostname ]($style)'
+
+[directory]
+style = 'bold fg:lime'
+format = '[$path$read_only]($style)'
+truncation_length = 2
+truncation_symbol = '…/'
+read_only = ' ro'
+
+[git_branch]
+symbol = '◇ '
+style = 'bold fg:blue'
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+
+[git_status]
+style = 'fg:orange'
+format = '[$all_status$ahead_behind ]($style)'
+
+[nodejs]
+style = 'fg:mint'
+format = '[ ◆ node $version ]($style)'
+
+[python]
+style = 'fg:blue'
+format = '[ ◆ py $version( $virtualenv) ]($style)'
+
+[rust]
+style = 'fg:orange'
+format = '[ ◆ rs $version ]($style)'
+
+[golang]
+style = 'fg:mint'
+format = '[ ◆ go $version ]($style)'
+
+[cmd_duration]
+min_time = 2000
+style = 'fg:orange'
+format = '[ ◷ $duration ]($style)'
+
+[time]
+disabled = false
+time_format = '%H:%M'
+style = 'bold fg:text'
+format = '[◷ $time](fg:muted)'
+
+[character]
+success_symbol = '[❯](bold lime)[❯](bold violet)'
+error_symbol = '[❯](bold red)'
+vimcmd_symbol = '[❮](bold violet)'

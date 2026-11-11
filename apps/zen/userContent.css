@@ -1,0 +1,9 @@
+
+
+/* EVA01 BEGIN */
+@-moz-document url("about:newtab"), url("about:home"), url("about:blank") {
+ :root { color-scheme: dark !important; --newtab-background-color: #211928 !important; --newtab-text-primary-color: #ECDCFF !important; --newtab-element-secondary-color: #30243F !important; --newtab-primary-action-background: #995CD0 !important; }
+ body { background-color: #211928 !important; color: #ECDCFF !important; }
+}
+
+/* EVA01 END */

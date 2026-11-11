@@ -1,0 +1,9 @@
+[Context]
+filesystems=xdg-config/gtk-3.0:ro;xdg-config/gtk-4.0:ro;xdg-config/kdeglobals:ro;xdg-data/color-schemes:ro;
+unset-environment=QT_QPA_PLATFORMTHEME;
+
+[Environment]
+XCURSOR_SIZE=32
+QT_QPA_PLATFORMTHEME=
+XCURSOR_THEME=EVA01-Cursors
+XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons:/usr/share/icons:/usr/share/pixmaps

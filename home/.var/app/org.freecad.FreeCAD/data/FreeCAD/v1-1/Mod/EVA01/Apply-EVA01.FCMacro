@@ -1,0 +1,32 @@
+import os, datetime, xml.etree.ElementTree as ET
+import FreeCAD as App
+import FreeCADGui as Gui
+base = os.path.join(App.getUserAppDataDir(), "Mod", "EVA01")
+if os.path.isdir(os.path.join(base, "EVA01")):
+    base = os.path.join(base, "EVA01")
+backup = os.path.join(base, "BaseApp-before-EVA01-" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + ".cfg")
+App.ParamGet("User parameter:BaseApp").Export(backup)
+root = ET.parse(os.path.join(base, "EVA01.cfg")).getroot()
+def apply(group, path):
+    params = App.ParamGet("User parameter:" + path)
+    for item in group:
+        name = item.get("Name")
+        if item.tag == "FCParamGroup":
+            apply(item, path + "/" + name)
+        elif item.tag == "FCUInt":
+            params.SetUnsigned(name, int(item.get("Value")))
+        elif item.tag == "FCBool":
+            params.SetBool(name, item.get("Value") == "1")
+        elif item.tag == "FCText":
+            params.SetString(name, item.text or "")
+baseapp = root.find("./FCParamGroup/FCParamGroup[@Name='BaseApp']")
+apply(baseapp, "BaseApp")
+p = App.ParamGet("User parameter:BaseApp/Preferences/MainWindow")
+p.SetString("StyleSheet", os.path.join(base, "EVA01.qss"))
+p.SetString("OverlayActiveStyleSheet", os.path.join(base, "EVA01-overlay.qss"))
+with open(os.path.join(base, "EVA01.qss")) as f:
+    Gui.getMainWindow().setStyleSheet(f.read())
+App.saveParameter()
+if Gui.activeDocument():
+    Gui.activeDocument().activeView().redraw()
+App.Console.PrintMessage("EVA01 applied. Preference backup: " + backup + "\n")

@@ -1,0 +1,151 @@
+
+
+/* EVA01 BEGIN */
+/* EVA01 — Zen 1.22 browser chrome. Colors only; retain native layout. */
+:root, :root[zen-private-window], :root[zen-unsynced-window] {
+  --zen-primary-color: #995CD0 !important;
+  --zen-colors-primary: #3E136F !important;
+  --zen-colors-secondary: #25154A !important;
+  --zen-colors-tertiary: #211928 !important;
+  --zen-colors-primary-foreground: #ECDCFF !important;
+  --zen-colors-border: #56367B !important;
+  --zen-colors-border-contrast: #56367B !important;
+  --zen-colors-hover-bg: #56367B !important;
+  --zen-colors-input-bg: #30243F !important;
+  --zen-colors-input-bg-hover: #49355D !important;
+  --zen-main-browser-background: #25154A !important;
+  --zen-main-browser-background-toolbar: #25154A !important;
+  --zen-main-browser-background-old: #25154A !important;
+  --zen-main-browser-background-toolbar-old: #25154A !important;
+  --zen-background-opacity: 1 !important;
+  --zen-toolbar-element-bg: #30243F !important;
+  --zen-toolbar-element-bg-hover: #49355D !important;
+  --zen-urlbar-background: #30243F !important;
+  --zen-dialog-background: #25154A !important;
+  --zen-sidebar-themed-icon-fill: #ECDCFF !important;
+  --toolbox-textcolor: #ECDCFF !important;
+  --toolbox-textcolor-inactive: #ECDCFF !important;
+  --toolbar-color: #ECDCFF !important;
+  --toolbar-bgcolor: #25154A !important;
+  --toolbar-background-color: #25154A !important;
+  --toolbar-field-background-color: #30243F !important;
+  --toolbar-field-background-color-focus: #30243F !important;
+  --toolbar-field-focus-background-color: #30243F !important;
+  --toolbar-field-color: #ECDCFF !important;
+  --toolbar-field-text-color: #ECDCFF !important;
+  --toolbar-field-text-color-focus: #ECDCFF !important;
+  --toolbar-field-focus-color: #ECDCFF !important;
+  --toolbar-field-border-color: #56367B !important;
+  --toolbar-field-border-color-focus: #8EDF5F !important;
+  --lwt-accent-color: #25154A !important;
+  --lwt-text-color: #ECDCFF !important;
+  --lwt-toolbar-field-background-color: #30243F !important;
+  --lwt-toolbar-field-color: #ECDCFF !important;
+  --arrowpanel-background: #25154A !important;
+  --arrowpanel-color: #ECDCFF !important;
+  --arrowpanel-border-color: #56367B !important;
+  --panel-background: #25154A !important;
+  --panel-color: #ECDCFF !important;
+  --panel-border-color: #56367B !important;
+  --panel-separator-color: #56367B !important;
+  --sidebar-background-color: #25154A !important;
+  --sidebar-text-color: #ECDCFF !important;
+  --tab-selected-bgcolor: #56367B !important;
+  --tab-selected-textcolor: #ECDCFF !important;
+  --tab-background-color-selected: #56367B !important;
+  --tab-background-color-hover: #30243F !important;
+  --toolbarbutton-background-color-hover: #49355D !important;
+  --toolbarbutton-background-color-active: #56367B !important;
+  --focus-outline-color: #8EDF5F !important;
+  --urlbarview-background-color: #30243F !important;
+  --urlbarview-background-color-hover: #49355D !important;
+  --urlbarview-background-color-selected: #56367B !important;
+  --urlbarview-text-color: #ECDCFF !important;
+  --urlbarview-text-color-selected: #ECDCFF !important;
+  --urlbarView-highlight-background: #56367B !important;
+  --urlbarView-highlight-color: #ECDCFF !important;
+  color-scheme: dark !important;
+}
+/* One consistent purple sidebar/toolbar surface, without workspace gradients. */
+#zen-main-app-wrapper, #navigator-toolbox, #TabsToolbar,
+#zen-sidebar-top-buttons, #zen-sidebar-bottom-buttons, #sidebar-box {
+  background-color: #25154A !important;
+  background-image: none !important;
+  color: #ECDCFF !important;
+}
+.zen-browser-grain { opacity: 0 !important; }
+#navigator-toolbox, #zen-sidebar-top-buttons, .zen-workspace-tabs-section {
+  --toolbox-textcolor: #ECDCFF !important;
+  --toolbar-color: #ECDCFF !important;
+  --tab-background-color-selected: #56367B !important;
+}
+.tab-background[selected], .tabbrowser-tab[selected] .tab-background {
+  background: #56367B !important;
+  box-shadow: inset 2px 0 #8EDF5F !important;
+  border-radius: 8px !important;
+}
+.tab-text, .zen-workspace-name, .zen-workspace-icon, .zen-folder-name {
+  color: #ECDCFF !important;
+}
+/* Current Firefox/Zen uses .urlbar-background, not #urlbar-background. */
+#urlbar, #urlbar[open], #urlbar[focused], #urlbar[breakout-extend] {
+  --zen-urlbar-background-base: #30243F !important;
+  --zen-urlbar-background-transparent: #30243F !important;
+  --urlbar-background-color: #30243F !important;
+  --urlbar-background-color-focus: #30243F !important;
+  --urlbar-background-border: 1px solid #56367B !important;
+  --urlbar-background-border-focused: 1px solid #8EDF5F !important;
+  --urlbarView-highlight-background: #56367B !important;
+  --urlbarView-highlight-color: #ECDCFF !important;
+  color: #ECDCFF !important;
+}
+#urlbar > .urlbar-background, #urlbar:hover > .urlbar-background,
+#urlbar[open] > .urlbar-background,
+#urlbar[breakout-extend] > .urlbar-background, #searchbar {
+  background: #30243F !important;
+  background-image: none !important;
+  border: 1px solid #56367B !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+#urlbar:is([focused="true"], :focus-within) > .urlbar-background,
+#searchbar:focus-within {
+  border-color: #8EDF5F !important;
+  outline: none !important;
+}
+#urlbar-input, .urlbar-input, .urlbar-input-box, #searchbar input {
+  color: #ECDCFF !important;
+  caret-color: #8EDF5F !important;
+  background-color: transparent !important;
+}
+.urlbar-input::placeholder, #urlbar-input::placeholder {
+  color: #B59AD9 !important;
+  opacity: 1 !important;
+}
+.urlbarView, .urlbarView-body-inner {
+  background-color: #30243F !important;
+  color: #ECDCFF !important;
+  border-color: #56367B !important;
+}
+.urlbarView-row[selected] .urlbarView-row-inner,
+.urlbarView-row:hover .urlbarView-row-inner {
+  background-color: #56367B !important;
+  color: #ECDCFF !important;
+}
+.urlbarView-url { color: #8EDF5F !important; }
+.urlbarView-title, .urlbarView-action { color: #ECDCFF !important; }
+menupopup, panel, #sidebar-box {
+  --panel-background: #25154A !important;
+  --panel-color: #ECDCFF !important;
+  --panel-border-color: #56367B !important;
+  --arrowpanel-background: #25154A !important;
+  --arrowpanel-color: #ECDCFF !important;
+}
+menupopup::part(content), panel::part(content) {
+  background-color: #25154A !important;
+  color: #ECDCFF !important;
+  border-color: #56367B !important;
+}
+/* EVA01 END */

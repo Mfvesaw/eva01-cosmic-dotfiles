@@ -1,0 +1,22 @@
+{
+    86001: (
+    name: "EVA01 NERV",
+    foreground: "#ECDCFF",
+    background: "#211928",
+    cursor: "#8EDF5F",
+    bright_foreground: "#F6EEFF",
+    dim_foreground: "#B59AD9",
+    normal: (
+        black: "#211928", red: "#F07891", green: "#8EDF5F", yellow: "#E9A23B",
+        blue: "#A8BFFF", magenta: "#995CD0", cyan: "#62C77B", white: "#ECDCFF",
+    ),
+    bright: (
+        black: "#6F5A82", red: "#FF9DB3", green: "#ACF37E", yellow: "#FFD479",
+        blue: "#C0D1FF", magenta: "#C091ED", cyan: "#8AE4A0", white: "#F6EEFF",
+    ),
+    dim: (
+        black: "#1A1420", red: "#B45A70", green: "#659F45", yellow: "#A97932",
+        blue: "#7C8FBF", magenta: "#6F4298", cyan: "#458E59", white: "#AD9EBF",
+    ),
+),
+}

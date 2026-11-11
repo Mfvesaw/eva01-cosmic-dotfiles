@@ -1,0 +1,51 @@
+{
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "t",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "space",
+    ): System(Terminal),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "F12",
+    ): System(Screenshot),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "v",
+        description: Some("Clip Keep"),
+    ): Spawn("flatpak run io.github.marcelogomes90.cosmic-ext-applet-clip-keep --toggle"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "e",
+    ): System(HomeFolder),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "b",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "l",
+    ): System(InputSourceSwitch),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "f",
+    ): System(WebBrowser),
+}

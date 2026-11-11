@@ -1,0 +1,6 @@
+huytd.nord-light
+k--kato.intellij-idea-keybindings
+local-eva01.eva01-theme
+openai.chatgpt
+streamlux.vscode-appwrite
+supabase.vscode-supabase-extension

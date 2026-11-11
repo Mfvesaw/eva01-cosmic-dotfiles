@@ -1,0 +1,2 @@
+Nimbus Mono PS
+/usr/share/fonts/urw-base35/NimbusMonoPS-Regular.otf

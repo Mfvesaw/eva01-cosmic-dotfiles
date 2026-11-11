@@ -1,0 +1,11 @@
+{
+  "created": "2026-11-11T15:14:37.756915+00:00",
+  "excluded_fields": [
+    ".config/kicad/10.0/eeschema.json/system/file_history",
+    ".config/kicad/10.0/kicad.json/system/file_history",
+    ".config/kicad/10.0/kicad.json/template/recent_templates",
+    "vesktop/settings/settings.json/plugins/SecretRingToneEnabler"
+  ],
+  "source_home": "__EVA01_HOME__",
+  "scope": "COSMIC and allowlisted application preferences; account data and histories excluded"
+}

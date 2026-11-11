@@ -1,0 +1,23 @@
+/* EVA01 */
+QWidget { background-color: #211928; color: #ECDCFF; selection-background-color: #56367B; selection-color: #ECDCFF; }
+QMainWindow, QDialog { background-color: #211928; }
+QMenuBar, QMenu, QToolBar, QStatusBar, QDockWidget::title { background-color: #25154A; color: #ECDCFF; }
+QMenu::item:selected, QMenuBar::item:selected { background-color: #56367B; border-radius: 4px; }
+QPushButton, QToolButton { background-color: #30243F; border: 1px solid #56367B; border-radius: 5px; padding: 5px; }
+QPushButton:hover, QToolButton:hover { background-color: #56367B; border-color: #995CD0; }
+QPushButton:pressed, QToolButton:checked { background-color: #3E136F; }
+QPushButton:focus, QLineEdit:focus, QComboBox:focus { border: 1px solid #8EDF5F; }
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox, QTextEdit, QPlainTextEdit { background-color: #25154A; border: 1px solid #56367B; border-radius: 4px; padding: 4px; }
+QTreeView, QListView, QTableView { background-color: #211928; alternate-background-color: #30243F; border: 1px solid #30243F; }
+QTreeView::item:selected, QListView::item:selected, QTableView::item:selected { background-color: #56367B; color: #ECDCFF; }
+QHeaderView::section { background-color: #25154A; color: #ECDCFF; border: 1px solid #30243F; padding: 5px; }
+QTabBar::tab { background-color: #25154A; color: #B59AD9; padding: 7px 12px; border-bottom: 2px solid transparent; }
+QTabBar::tab:selected { color: #ECDCFF; background-color: #30243F; border-bottom-color: #8EDF5F; }
+QScrollBar:vertical { background-color: #211928; width: 10px; }
+QScrollBar:horizontal { background-color: #211928; height: 10px; }
+QScrollBar::handle { background-color: #995CD0; border-radius: 4px; min-width: 12px; min-height: 12px; }
+QScrollBar::add-line, QScrollBar::sub-line { width: 0px; height: 0px; }
+QToolTip { background-color: #25154A; color: #ECDCFF; border: 1px solid #995CD0; padding: 5px; }
+QProgressBar { border: 1px solid #56367B; border-radius: 4px; text-align: center; }
+QProgressBar::chunk { background-color: #995CD0; }
+QWidget:disabled { color: #857298; }

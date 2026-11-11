@@ -1,0 +1,18 @@
+Some(([
+    "io.github.crocodile.cosmic-ext-applet-workspace-icons",
+    "io.github.motixo.Orbit.Applet",
+], [
+    "dev.DBrox.CosmicPrivacyIndicator",
+    "com.system76.CosmicAppletStatusArea",
+    "com.system76.CosmicAppletNotifications",
+    "com.system76.CosmicAppletTiling",
+    "com.system76.CosmicAppletAudio",
+    "dev.cappsy.CosmicExtAppletDict",
+    "io.github.petar030.cosmic-pomodoro",
+    "io.github.marcelogomes90.cosmic-ext-applet-clip-keep",
+    "com.system76.CosmicAppletBattery",
+    "com.system76.CosmicAppletBluetooth",
+    "com.system76.CosmicAppletNetwork",
+    "com.system76.CosmicAppletPower",
+    "dev.cappsy.CosmicExtAppletLogoMenu",
+]))

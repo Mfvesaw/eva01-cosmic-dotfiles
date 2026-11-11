@@ -1,0 +1,9 @@
+[
+    (
+        name: "منطقة الرياض, السعودية",
+        lat: "23.3333330",
+        lon: "45.3333330",
+        cached_grid: None,
+        country_code: Some("sa"),
+    ),
+]

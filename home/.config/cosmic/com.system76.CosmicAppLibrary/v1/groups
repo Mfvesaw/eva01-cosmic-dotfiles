@@ -1,0 +1,75 @@
+[
+    (
+        name: "Study",
+        icon: "folder-symbolic",
+        filter: Categories(
+            categories: [
+                "Office",
+            ],
+            exclude: [
+                "org.gnome.SystemMonitor",
+            ],
+            include: [
+                "org.gnome.Totem",
+                "org.gnome.eog",
+                "simple-scan",
+                "thunderbird",
+                "io.github.alainm23.planify",
+                "org.gnome.Calculator",
+            ],
+        ),
+    ),
+    (
+        name: "cosmic-system",
+        icon: "folder-symbolic",
+        filter: Categories(
+            categories: [
+                "System",
+            ],
+            exclude: [
+                "com.system76.CosmicStore",
+                "com.system76.CosmicTerm",
+                "org.gnome.SystemMonitor",
+            ],
+            include: [
+                "gnome-language-selector",
+                "im-config",
+                "org.freedesktop.IBus.Setup",
+                "system76-driver",
+                "org.gnome.DiskUtility",
+                "io.github.fabrialberio.pinapp",
+                "com.system76.CosmicScreenshot",
+                "org.kde.ark",
+                "qt6ct",
+                "qt5ct",
+                "nheko",
+                "im-chooser",
+            ],
+        ),
+    ),
+    (
+        name: "Fun",
+        icon: "folder-symbolic",
+        filter: Categories(
+            categories: [
+                "Utility",
+            ],
+            exclude: [
+                "com.system76.CosmicEdit",
+                "com.system76.CosmicFiles",
+                "io.github.alainm23.planify",
+                "org.gnome.DiskUtility",
+                "io.github.fabrialberio.pinapp",
+                "org.gnome.Calculator",
+                "com.system76.CosmicScreenshot",
+                "org.kde.ark",
+                "org.gnome.SystemMonitor",
+            ],
+            include: [
+                "nm-connection-editor",
+                "net.fhannenheim.musicfetch",
+                "org.gnome.Rhythmbox3",
+            ],
+        ),
+    ),
+]

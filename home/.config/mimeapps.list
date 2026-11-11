@@ -1,0 +1,6 @@
+
+[Default Applications]
+x-scheme-handler/jetbrains=jetbrainsd.desktop
+x-scheme-handler/grokbot=grok-bot.desktop
+x-scheme-handler/sand=grok-bot.desktop
+text/html=app.zen_browser.zen.desktop
