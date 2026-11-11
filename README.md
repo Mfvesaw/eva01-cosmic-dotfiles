@@ -65,6 +65,14 @@ To test safely in another directory (desktop integration is skipped):
 - Environment, autostart, MIME associations, Flatpak appearance overrides.
 - Source image, wallpaper, theme files and package/Flatpak/extension inventories.
 
+The panel and dock use a 1 px lime border matching the window highlight.
+COSMIC may regenerate its divider color when rebuilding a theme. To reapply
+the border after a theme change:
+
+```sh
+python3 scripts/match-panel-borders.py
+```
+
 Home paths are substituted at installation. Session-specific document-portal
 paths for the logo-menu image are replaced with a permanent app-private asset.
 Source icons/theme assets are compressed with symlinks preserved. Credentials,
