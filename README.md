@@ -3,7 +3,10 @@
 A private snapshot of my Fedora COSMIC desktop, using violet, lavender and lime.
 The terminal shows **static, colored ASCII** of the supplied EVA Unit-01 head
 beside Fastfetch. Fish and Starship use the normal full-height terminal, with
-no animation, background renderer or dedicated tmux pane.
+no animation, background renderer or dedicated tmux pane. Running `clear` or
+pressing Ctrl+L clears the terminal and redraws the Fastfetch card above the
+prompt. Ctrl+L preserves a partly typed command. The wrapper leaves scripts
+and `clear` option/help invocations alone. `EVA01_STARTUP=0` disables the card.
 
 ## Restore
 

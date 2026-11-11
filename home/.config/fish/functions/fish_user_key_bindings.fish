@@ -16,4 +16,9 @@ function fish_user_key_bindings --description 'EVA01 searchable completion and h
     bind --mode $eva01_binding_mode alt-f forward-word
     bind --mode $eva01_binding_mode alt-up history-token-search-backward
     bind --mode $eva01_binding_mode alt-down history-token-search-forward
+
+    # Keep the static Fastfetch card after clearing, including vi editing modes.
+    for eva01_mode in default insert visual
+        bind --mode $eva01_mode ctrl-l __eva01_clear_screen
+    end
 end
